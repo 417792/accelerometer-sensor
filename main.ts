@@ -6,6 +6,8 @@ Bullet.set(LedSpriteProperty.Brightness, 225)
 basic.forever(function () {
     if (Bullet.isTouching(Target)) {
         game.addScore(1)
+        Bullet.set(LedSpriteProperty.X, 2)
+        Bullet.set(LedSpriteProperty.Y, 2)
     }
     if (game.score() > 10) {
         basic.showString("You killed it!")
