@@ -1,5 +1,6 @@
+game.startCountdown(50000)
 game.setScore(0)
-let Target = game.createSprite(0, 4)
+let Target = game.createSprite(randint(0, 4), randint(0, 4))
 Target.set(LedSpriteProperty.Brightness, 50)
 let Bullet = game.createSprite(2, 2)
 Bullet.set(LedSpriteProperty.Brightness, 225)
@@ -8,16 +9,16 @@ basic.forever(function () {
         game.addScore(1)
         Bullet.set(LedSpriteProperty.X, 2)
         Bullet.set(LedSpriteProperty.Y, 2)
+        Target.set(LedSpriteProperty.X, randint(0, 4))
+        Target.set(LedSpriteProperty.Y, randint(0, 4))
     }
-    if (game.score() > 10) {
-        basic.showString("You killed it!")
-        game.gameOver()
+    if (game.isGameOver()) {
+        if (game.score() >= 15) {
+            basic.showString("You killed it!")
+        } else if (game.score() < 15) {
+            basic.showString("You lose")
+        }
     }
-})
-basic.forever(function () {
-    Target.set(LedSpriteProperty.X, randint(0, 4))
-    Target.set(LedSpriteProperty.Y, randint(0, 4))
-    basic.pause(5000)
 })
 basic.forever(function () {
     if (input.rotation(Rotation.Roll) < -60) {
